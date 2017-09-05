@@ -2,7 +2,7 @@
 
 ### 基本格式
 
-http(s)://domain/v1/:app_id/functional-path?query
+> http(s)://domain/v1/:app_id/functional-path?query
 
 Authorization：SHA2(url:sk)
 **注意这里的 url 不含 scheme**
@@ -23,23 +23,23 @@ app_key 分为两部分，app_id 和 sk
 
 #### 崩溃上报
 
-http(s)://domain/v1/:app_id/crashes/:platform
+> http(s)://domain/v1/:app_id/crashes/:platform
 
 #### Http监控
 
-http(s)://domain/v1/:app_id/http-stats/:platform
+> http(s)://domain/v1/:app_id/http-stats/:platform
 
 #### 网络诊断
 
-http(s)://domain/v1/:app_id/net-diags/:platform
+> http(s)://domain/v1/:app_id/net-diags/:platform
 
 #### 服务配置
 
-http(s)://domain/v1/:app_id/app-config/:platform
+> http(s)://domain/v1/:app_id/app-config/:platform
 
 #### 自定义上报
 
-http(s)://domain/v1/:app_id/events/:event
+> http(s)://domain/v1/:app_id/events/:event
 
 ---
 
