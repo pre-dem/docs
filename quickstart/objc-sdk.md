@@ -22,7 +22,9 @@ pod "PreDemObjc"
 
 ## 快速集成
 
-只需如下两行代码，您便可将 pre-dem-objc sdk 集成到您的 App 中：
+首先请根据[创建第一个 App](quickstart/init)的步骤获取 App 的 `App Key`
+
+然后，只需如下两行代码，您便可将 pre-dem-objc sdk 集成到您的 App 中：
 
 ![](_media/ios-sdk-integration.png)
 

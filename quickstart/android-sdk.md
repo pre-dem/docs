@@ -22,6 +22,8 @@
 
 ## 集成: 使用 Gradle 构建
 
+首先请根据[创建第一个 App](quickstart/init)的步骤获取 App 的 `App Key`。
+
 ### 工程相关依赖构建
  ` 需要确保已安装 Gradle 构建环境和 AS开发环境 `
 
