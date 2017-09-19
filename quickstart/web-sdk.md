@@ -21,18 +21,18 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 具体调用逻辑为：
 
 - 引入 js 文件
-``` objc
+```
     <script type="text/javascript" src="predem-web-sdk.js"></script>
 ```
 
 - 初始化
-``` objc
+```
     <script type="text/javascript">
-        window.InitWebSdk({tag: TAG, token: App Key});
+        window.InitWebSdk({tag: ${TAG}, token: ${App Key}});
     </script>
 ```
-## 字段释义
 
+## 字段释义
 ### 窗口性能
 
 | 字段 | 解释 |
