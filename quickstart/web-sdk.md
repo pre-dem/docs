@@ -46,7 +46,7 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 | UnloadEventEnd | 在浏览器已完成前一页的卸载的时候，捕获所需的数据（如果相同域中有前一页需要卸载的话） |
 | RedirectStart | 在浏览器开始 HTTP 重定向时捕获所需的数据。 |
 | RedirectEnd | 在浏览器完成任何 HTTP 重定向时捕获所需的数据。 |
-| FetchStart | 浏览器发起 http 请求读取文档的毫秒时间戳 |
+| FetchStart | 浏览器发起 HTTP 请求读取文档的毫秒时间戳 |
 | DomainLookupStart | 域名查询开始时的时间戳 |
 | DomainLookupEnd | 域名查询结束时的时间戳 |
 | ConnectStart | HTTP 请求开始向服务器发送的时间戳 |
@@ -65,7 +65,7 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 | NavigationType | 是一个数值常量，表示刚刚发生的导航类型, 0: 页面第一次加载; 1:页面重载过; 2:页面是通过“后退”或“前进”按钮打开的|
 | RedirectCount | 表示页面加载前的重定向次数 |
 | TriggerTime | 触发时间 |
-| ClientIP | ClientIP |
+| ClientIP | 客户端 IP |
 | Country | 国家 |
 | Province | 省份 |
 | City | 城市 |
@@ -78,7 +78,7 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 | AppBundleId | 宿主 App 的唯一标识号(包名) |
 | AppName | 宿主 App 的名字 |
 | AppVersion | App 版本号 |
-| DeviceModel | 设置 Model |
+| DeviceModel | 设备型号 |
 | OsPlatform | 平台 |
 | OsVersion | 系统版本号 |
 | SdkVersion | sdk 版本号 |
@@ -86,8 +86,8 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 | Tag | 用户标识 |
 | Manufacturer | 厂商 |
 | Domain | 域名 |
-| Method | POST GET |
-| HostIP | 域名 |
+| Method | POST/GET/PUT/PATCH/DELETE |
+| HostIP | 主机IP |
 | StatusCode | 状态码 |
 | StartTimestamp | 发送请求时间 |
 | ResponseTimeStamp | response 时间 |
@@ -110,17 +110,17 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 | AppBundleId | 宿主 App 的唯一标识号(包名) |
 | AppName | 宿主 App 的名字 |
 | AppVersion | App 版本号 |
-| DeviceModel | 设置 Model |
+| DeviceModel | 设备型号 |
 | OsPlatform | 平台 |
 | OsVersion | 系统版本号 |
 | SdkVersion | sdk 版本号 |
 | SdkId | sdk 唯一标识 |
 | DeviceId | 设备唯一标识 |
 | Manufacturer | 厂商 |
-| StartTime | APP 启动时间 |
+| StartTime | App 启动时间 |
 | CrashTime | 崩溃触发时间 |
-| Mode | 类型, web 有数据 |
-| Message | web 有数据 |
+| Mode | 类型 |
+| Message | 信息 |
 
 
 
