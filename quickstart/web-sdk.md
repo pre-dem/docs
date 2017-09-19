@@ -75,6 +75,33 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 
 | 字段 | 解释 |
 | - | - |
+| AppBundleId | 宿主 App 的唯一标识号(包名) |
+| AppName | 宿主 App 的名字 |
+| AppVersion | App 版本号 |
+| DeviceModel | 设置 Model |
+| OsPlatform | 平台 |
+| OsVersion | 系统版本号 |
+| SdkVersion | sdk 版本号 |
+| SdkId | sdk 唯一标识 |
+| Tag | 用户标识 |
+| Manufacturer | 厂商 |
+| Domain | 域名 |
+| Method | POST GET |
+| HostIP | 域名 |
+| StatusCode | 状态码 |
+| StartTimestamp | 发送请求时间 |
+| ResponseTimeStamp | response 时间 |
+| EndTimestamp | 请求结束时间 |
+| DnsTime | dns 解析时间 |
+| DataLength | 数据长度 |
+| NetworkErrorCode | 错误码 |
+| NetworkErrorMsg | 错误信息 |
+| ClientIP | 客户端 IP |
+| Country | 国家 |
+| Province | 省份 |
+| City | 城市 |
+| Isp | 运营商 |
+
 
 ### 错误信息
 
@@ -86,12 +113,11 @@ pre-dem-web-sdk 是一款 JavaScript 端无埋点统计工具。几乎可以在 
 | DeviceModel | 设置 Model |
 | OsPlatform | 平台 |
 | OsVersion | 系统版本号 |
-| OsBuild | 域名 |
 | SdkVersion | sdk 版本号 |
 | SdkId | sdk 唯一标识 |
 | DeviceId | 设备唯一标识 |
 | Manufacturer | 厂商 |
-| StartTime |  |
+| StartTime | APP 启动时间 |
 | CrashTime | 崩溃触发时间 |
 | Mode | 类型, web 有数据 |
 | Message | web 有数据 |
