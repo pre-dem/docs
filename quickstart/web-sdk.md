@@ -28,13 +28,13 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
 - 初始化
 ```
     <script type="text/javascript">
-        predem.init({appId: ${AppId}, domain: ${Doamin}});
+        predem.init({appId: ${AppId}, domain: ${Domain}});
     </script>
 ```
 - 设置上报 Tag
 ```
     <script type="text/javascript">
-        predem.init({appId: ${AppId}, domain: ${Doamin}});
+        predem.init({appId: ${AppId}, domain: ${Domain}});
         predem.setTag(${Tag});
     </script>
 ```
