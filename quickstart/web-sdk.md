@@ -22,7 +22,7 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
 
 - 引入 js 文件
 ```
-    <script type="text/javascript" src="pre-dem-web.js"></script>
+    <script type="text/javascript" src="${WebSdkUrl}"></script>
 ```
 
 - 初始化
@@ -31,23 +31,11 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
         predem.init({appId: ${AppId}, domain: ${Doamin}});
     </script>
 ```
-- 设置上报 Token
-```
-    <script type="text/javascript">
-        predem.init({appId: ${AppId}, domain: ${Doamin}});
-        predem.setErrorToken("errorToken");
-        predem.setNetworkToken("networkToken");
-        predem.setPerformanceToken("performanceToken");
-    </script>
-```
 - 设置上报 Tag
 ```
     <script type="text/javascript">
         predem.init({appId: ${AppId}, domain: ${Doamin}});
-        predem.setErrorToken("errorToken");
-        predem.setNetworkToken("networkToken");
-        predem.setPerformanceToken("performanceToken");
-        predem.setTag("test tag");
+        predem.setTag(${Tag});
     </script>
 ```
 
