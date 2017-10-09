@@ -22,21 +22,31 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
 
 - 引入 js 文件
 ```
-    <script type="text/javascript" src="${WebSdkUrl}"></script>
-```
-
-- 初始化
-```
-    <script type="text/javascript">
-        predem.init({appKey: ${AppKey}, domain: ${Domain}});
+    <script type="text/javascript"
+            src="${WebSdkUrl}"
+            data-app-key="${AppKey}"
+            data-domain="${Domain}">
     </script>
 ```
+
+
 - 设置上报 Tag (注释：用来设置唯一标识，根据自己的业务逻辑选择调用，允许不设置)
+- 方法一
+```
+    <script type="text/javascript"
+            src="${WebSdkUrl}"
+            data-app-key="${AppKey}"
+            data-domain="${Domain}"
+            data-tag="${Tag}">
+    </script>
+```
+- 方法二
 ```
     <script type="text/javascript">
         predem.setTag(${Tag});
     </script>
 ```
+
 
 ## 字段释义
 ### 窗口性能
