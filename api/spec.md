@@ -39,7 +39,7 @@ app_key 分为两部分，app_id 和 sk
 
 #### 自定义上报
 
-> http(s)://domain/v1/:app_id/events/:event
+> http(s)://domain/v1/:app_id/events
 
 ---
 
@@ -356,3 +356,55 @@ province          : String
 city              : String
 isp               : String
 ```
+
+---
+
+## 自定义事件 API Spec
+
+### 上报一条自定义事件
+
+```
+POST v1/${app_id}/events
+Content-Type: application/json
+Body:
+{
+    AppBundleId  string `json:"app_bundle_id"`
+    AppName      string `json:"app_name"`
+    AppVersion   string `json:"app_version"`
+    DeviceModel  string `json:"device_model"`
+    OsPlatform   string `json:"os_platform"`
+    OsVersion    string `json:"os_version"`
+    OsBuild      string `json:"os_build"`
+    SdkVersion   string `json:"sdk_version"`
+    SdkId        string `json:"sdk_id"`
+    Tag          string `json:"tag"`
+    Manufacturer string `json:"manufacturer"`
+    Name         string `json:"name"`
+    Content      string `json:"content"`
+    Type         string `json:"type"`
+}
+```
+
+其中，`Content` 是自定义事件映射表序列化为字符串后的结果。
+
+返回包：
+
+- 若上传自定义事件成功，返回：
+
+```
+200
+```
+
+- 若上传自定义事件失败，返回：
+
+```
+4xx
+{
+	"error_message": ${msg},
+	"error_code": ${code}
+}
+```
+
+
+
+
