@@ -146,6 +146,7 @@ POST /v1/f127c8d8f9ede0f464e80f5f4b46658/crashes/i
 ### 上报监控数据
 
 请求包:
+
 ```
 POST v1/${app_id}/http-stats/${platform}
 Content-Type: application/x-gzip
@@ -156,12 +157,14 @@ Body: ${Content}
 返回包:
 
 - 如果请求成功，返回包含如下内容的 JSON 字符串（已格式化，便于阅读）：
+
 ```
 201
 {}
 ```
 
 - 如果请求失败，返回包含如下内容的JSON字符串（已格式化，便于阅读）：
+
 ```
 {
     "error_message":    ${ErrorMessage} // string
@@ -170,6 +173,7 @@ Body: ${Content}
 ```
 
 * `<Content>`: 上报信息正文，格式：
+
 ```
 ${value0}\t${value1}\t${value2}\t${value3}\n
 ${value0}\t${value1}\t${value2}\t${value3}\n
@@ -179,6 +183,7 @@ ${value0}\t${value1}\t${value2}\t${value3}\n
 数据使用 gzip 进行压缩
 
 * 上报数据结构
+
 ```
 {
 	AppId             string // app id
@@ -310,12 +315,14 @@ Content-Type: application/json
 返回包：
 
 - 如果请求成功，返回包含如下内容的 JSON 字符串（已格式化，便于阅读）：
+
 ```
 201 
 {}
 ```
 
 - 如果请求失败，返回包含如下内容的JSON字符串（已格式化，便于阅读）：
+
 ```
 {
     "error_message":    ${Error} // string
