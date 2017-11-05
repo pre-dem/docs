@@ -2,7 +2,7 @@
 
 * 拥有七牛云账号；
 * 到七牛云官网申请 Access Key 和 Secret Key；
-* 联系客服或销售人员开通DEM相关服务；
+* 联系客服或销售人员开通 Pandora 大数据平台以及 DEM 相关服务；
 
 具体操作请参考如下步骤：
 
@@ -19,4 +19,8 @@
 (5). 点击秘钥管理页面的<创建秘钥>按钮，并启用；秘钥的 AK 和 SK 即 Access Key 和 Secret Key。
 
 ![](_media/ready2.png)
+
+(6). 登陆七牛云开发者平台中申请开通七牛云 Pandora 大数据平台服务 [`https://portal.qiniu.com/apply-pandora`](https://portal.qiniu.com/apply-pandora)；
+
+  ![](_media/ready3.png)
 
