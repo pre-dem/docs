@@ -18,4 +18,6 @@
 - [**API Specs**](api/spec)
 - **更多**
   - [交流分享](/links/sharing)
+- **计费**
+  - [计费](/price/price)
 
