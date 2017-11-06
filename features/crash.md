@@ -15,4 +15,6 @@
 
 ![](_media/crash-analysis-grafana.jpg)
 
+![](_media/dem-crash.gif)
+
 更多的展示维度正在酝酿中，敬请期待。
