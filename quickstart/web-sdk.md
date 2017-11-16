@@ -12,9 +12,9 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
 | 错误拦截 | v1.0.0 |
 
 ## 快速集成
-首先请根据[创建第一个 App](quickstart/init)的步骤获取 App 的 `App Key`
+首先请根据[创建第一个 App](quickstart/init)的步骤获取 App 的 `App Key` 以及 `Domain`
 
-将 pre-dem-web.js 文件引入到你需要的 html 页面中， 然后初始化 SDK.
+将 pre-dem-web-v.xxx.js 文件引入到你需要的 html 页面中， 然后初始化 SDK.
 
 ![](_media/websdk-init.png)
 
@@ -44,6 +44,32 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
 ```
     <script type="text/javascript">
         predem.setTag(${Tag});
+    </script>
+```
+- 自定义上报(注意: 上报数据类型，必须是 object, 不能是数组以及其他的类型)
+```
+    <script type="text/javascript">
+        var testData = {"key": "testkey"};
+        predem.sendCustomEventData("test name", testData)
+    </script>
+```
+- 性能数据的 Filter, 过滤不需要的数据。
+```
+    <script type="text/javascript">
+        // 添加性能数据的 filter, 如果不过滤，可以忽略。
+            function perfFilter(performanceData) {
+                var newData = [];
+                if(performanceData) {
+                    for (var i = 0; i < performanceData.length; i ++) {
+                        if (performanceData[i].initiatorType != "script") {
+                            newData.push(performanceData[i]);
+                        }
+                    }
+                }
+                return newData;
+            }
+
+            predem.setPerformanceFilter(perfFilter);
     </script>
 ```
 
