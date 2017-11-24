@@ -13,8 +13,9 @@
   - [网络性能监控](/features/httpmonitor)
   - [网络诊断](/features/netdiag)
   - [卡顿监控](/features/lag)
-  - [自定义上报](/features/udf)
+  - [web 性能监控](/features/webperformance)
   - [日志上报](/features/logger)
+  - [自定义上报](/features/udf)
 - [**API Specs**](api/spec)
 - **更多**
   - [交流分享](/links/sharing)
