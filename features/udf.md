@@ -5,4 +5,6 @@
 * 可以持久化存储
 * workflow 进行实时或者离线分析
 
+Portal 数据查看方法如下：
 
+![](_media/dem-portal-custom.gif)
