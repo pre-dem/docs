@@ -56,15 +56,16 @@ predem.sendEvent('点击商品', {
   '品牌' : 'Apple'});
 ```
 
-- 如果想关闭错误上报，日志上报，性能上报，可以做如下设置
+- 如果想关闭错误上报，日志上报，性能上报，可以做如下设置，默认是打开的
 ```
-<script type="text/javascript"
-        src="./../dist/pre-dem-web-v1.0.13.js"
+    <script type="text/javascript"
+        src="${WebSdkUrl}"
         data-app-key="${AppKey}"
         data-domain="${Domain}"
-        data-ajax-enabled="false"
-        data-crash-enabled="false"
-        data-performance-enable="false"></script>
+        data-ajax-enabled="${true | false}"
+        data-crash-enabled="${true | false}"
+        data-performance-enable="${true | false}">
+    </script>
 ```
 
 ## 字段释义
