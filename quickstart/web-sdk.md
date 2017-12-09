@@ -47,6 +47,25 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
     </script>
 ```
 
+- 上报自定义事件
+```
+predem.sendEvent('点击商品', {
+  '品名' : 'Apple iPhone X',
+  '价格' : 10888.00,
+  '一级分类' : 手机,
+  '品牌' : 'Apple'});
+```
+
+- 如果想关闭错误上报，日志上报，性能上报，可以做如下设置
+```
+<script type="text/javascript"
+        src="./../dist/pre-dem-web-v1.0.13.js"
+        data-app-key="${AppKey}"
+        data-domain="${Domain}"
+        data-ajax-enabled="false"
+        data-crash-enabled="false"
+        data-performance-enable="false"></script>
+```
 
 ## 字段释义
 ### 窗口性能
