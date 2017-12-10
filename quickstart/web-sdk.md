@@ -25,19 +25,36 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
     <script type="text/javascript"
             src="${WebSdkUrl}"
             data-app-key="${AppKey}"
-            data-domain="${Domain}">
+            data-domain="${Domain}"
+            data-ajax-enabled="${true | false}"
+            data-crash-enabled="${true | false}"
+            data-performance-enable="${true | false}">
     </script>
 ```
+
+- 参数说明
+
+| 参数 | 类型 | 说明 |
+| - | - |
+| src | string | sdk 路径 |
+| data-app-key | string | AppKey |
+| data-domain | string | Domain |
+| data-ajax-enabled | string | 是否开启 Ajax 上报,  "ture" or "false"|
+| data-crash-enabled | string | 是否开启错误上报,  "ture" or "false"|
+| data-performance-enable | string | 是否开启性能数据上报,  "ture" or "false"|
 
 
 - 设置上报 Tag (注释：用来设置唯一标识，根据自己的业务逻辑选择调用，允许不设置)
 - 方法一
 ```
     <script type="text/javascript"
-            src="${WebSdkUrl}"
-            data-app-key="${AppKey}"
-            data-domain="${Domain}"
-            data-tag="${Tag}">
+                src="${WebSdkUrl}"
+                data-app-key="${AppKey}"
+                data-domain="${Domain}"
+                data-tag="${Tag}"
+                data-ajax-enabled="${true | false}"
+                data-crash-enabled="${true | false}"
+                data-performance-enable="${true | false}">
     </script>
 ```
 - 方法二
