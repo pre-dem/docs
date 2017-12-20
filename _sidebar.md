@@ -9,6 +9,7 @@
   - [Android SDK 使用](quickstart/android-sdk.md)
   - [Web SDK 使用](quickstart/web-sdk.md)
   - [微信小程序 SDK 使用](quickstart/wechat-miniprogram-sdk.md)
+  - [C SDK 使用](quickstart/c-sdk.md)
 - **功能**
   - [崩溃收集](features/crash.md)
   - [网络性能监控](features/httpmonitor.md)

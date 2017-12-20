@@ -1,1 +1,1 @@
-- [**七牛 Pandora**](http://pandora-docs.qiniu.com)
+- [**七牛 PREDEM**](https://pre-dem.github.io/docs)
