@@ -34,6 +34,13 @@ predem_curl_init("{domain}", "{appKey}");
 ```
 初始化已经完成
 
+- 设置设备信息
+
+把设备相关信息通过这个函数设置进去，具体参数见头文件描述
+```
+predem_curl_set_env("{}", "0.0.1", "arm", "qiniu", "abcdef", "macos", "999", NULL, "{user_id}");
+```
+
 - 上报自定义事件
 
 C SDK 只支持自定义事件上报功能。C SDK 是基于 libcurl 实现的，所以在使用之前别忘了初始化libcurl, 程序中前面只要有一处做了初始化就成，这个函数是全局的，注意多线程冲突。
@@ -43,28 +50,17 @@ curl_global_init(CURL_GLOBAL_ALL);
 
 上报事件, 可以参考头文件的注释以及单元测试中的代码，C SDK 默认集成了cJSON。
 ```
-    PREDEM_EnvInfo* info = (PREDEM_EnvInfo*)malloc(sizeof(PREDEM_EnvInfo));
-    info->app_name = "sdktest";
-    info->app_version = "0.0.1";
-    info->device_model = "arm";
-    info->manufacturer = "qiniu";
-    info->device_id = "abcdef";
-    info->os_platform = "macos";
-    info->os_version = "999";
-    info->tag = __FILE__;
-
     cJSON* obj = cJSON_CreateObject();
-    cJSON_AddStringToObject(obj, "test", "GOGOGO");
+    cJSON_AddStringToObject(obj, "clloud", "qiniu");
 
     const char* c = cJSON_PrintUnformatted(obj);
 
-    int res = predem_curl_send_event("testsend", c, info);
+    int res = predem_curl_send_event("testsend", c);
     if (res != PREDEM_CURL_OK) {
         printf("code %d\n", res);
         FAIL("send event failed");
     }
 
-    free(info);
     cJSON_free((void*)c);
     cJSON_Delete(obj);
 ```
