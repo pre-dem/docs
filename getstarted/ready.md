@@ -20,7 +20,7 @@
 
 ![](_media/ready2.png)
 
-(6). 登录七牛云开发者平台中申请开通七牛云 Pandora 大数据平台服务 [`https://portal.qiniu.com/apply-pandora`](https://portal.qiniu.com/apply-pandora)。
+(6). 联系七牛云销售为您开通 Pandora 服务
 
-  ![](_media/ready3.png)
+(7). 登录 [dem](https://predem.qiniu.com) 开始使用
 
