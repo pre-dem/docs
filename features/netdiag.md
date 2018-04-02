@@ -9,4 +9,4 @@
 
 Portal 数据查看方法如下：
 
-![](_media/dem-portal-netdiag.gif)
+![](../_media/dem-portal-netdiag.gif)

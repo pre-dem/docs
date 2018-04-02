@@ -40,7 +40,7 @@
     }
  	```
 
- ![image](_media/android-project-gradle.png)
+ ![image](../_media/android-project-gradle.png)
 
  - 打开项目工程主模块下的build.gradle ( app ) 文件
 
@@ -60,7 +60,7 @@
    }
     ```
 
- ![image](_media/android-module-gradle.png)
+ ![image](../_media/android-module-gradle.png)
 
 ### 配置应用权限
 构建完成后，请在待检测的 App 工程的 AndroidMainfest.xml 文件中增加以下的权限:
@@ -73,7 +73,7 @@
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 ```
 
- ![image](_media/android-permission.png)
+ ![image](../_media/android-permission.png)
 
 ### 插入初始化探针代码
 在 “MainActivity” 中的 onResume() 方法（如未找到该方法请新增）中初始化 Android APM SDK
@@ -82,7 +82,7 @@
 DEMManager.start("apm.domain.com", "appkey", this.getApplicationContext());
 ```
 
- ![image](_media/android-start.png)
+ ![image](../_media/android-start.png)
 
 ### 使用 Gradle 命令打包编译
     gradle clean build

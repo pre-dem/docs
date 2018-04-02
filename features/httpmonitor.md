@@ -9,4 +9,4 @@
 
 您可在 DEM Portal 上，查询源自 App 的网络上报数据
 
-![](_media/dem-http-monitor.gif)
+![](../_media/dem-http-monitor.gif)
