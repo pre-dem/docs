@@ -14,11 +14,11 @@
 
 (4). 登录后，点击<个人面板>的秘钥管理页面。
 
-![](_media/ready1.png)
+![](../_media/ready1.png)
 
 (5). 点击秘钥管理页面的<创建秘钥>按钮，并启用；秘钥的 AK 和 SK 即 Access Key 和 Secret Key。
 
-![](_media/ready2.png)
+![](../_media/ready2.png)
 
 (6). 联系七牛云销售为您开通 Pandora 服务
 

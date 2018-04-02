@@ -27,7 +27,7 @@ pod "PreDemObjc"
 
 然后，只需如下两行代码，您便可将 pre-dem-objc sdk 集成到您的 App 中：
 
-![](_media/ios-sdk-integration.png)
+![](../_media/ios-sdk-integration.png)
 
 具体调用逻辑为：
 

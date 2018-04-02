@@ -16,7 +16,7 @@ pre-dem-web 是一款 JavaScript 端无埋点统计工具。几乎可以在 0 �
 
 将 pre-dem-web-v.xxx.js 文件引入到你需要的 html 页面中， 然后初始化 SDK.
 
-![](_media/websdk-init.png)
+![](../_media/websdk-init.png)
 
 具体调用逻辑为：
 

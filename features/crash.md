@@ -13,8 +13,8 @@
 * 设备型号
 * 应用版本
 
-![](_media/crash-analysis-grafana.jpg)
+![](../_media/crash-analysis-grafana.jpg)
 
-![](_media/dem-portal-crash.gif)
+![](../_media/dem-portal-crash.gif)
 
 更多的展示维度正在酝酿中，敬请期待。
