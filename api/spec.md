@@ -2,20 +2,16 @@
 
 ### 基本格式
 
-> http(s)://domain/v1/:app_id/functional-path?query
+> http(s)://domain/v2/:app_id/functional-path?query
 
 Authorization：SHA2(url:sk)
 **注意这里的 url 不含 scheme**
 
 如果忽略鉴权，这里可以为空
 
-**TODO** 如果需要，可以在query里加入utc 时间
-
-除了自定义的上报，都会带上platform, platform 用字符串表示，i(ios)和a(android)
-
 客户在使用时，需要配置两个参数，app_key 以及域名
 
-app_key 分为两部分，app_id 和 sk
+app_key 分为两部分，app_id 和 sk, App_id 为 app_key 的前8位
 
 服务端根据 app_id 找寻对应的app
 
@@ -23,123 +19,74 @@ app_key 分为两部分，app_id 和 sk
 
 #### 崩溃上报
 
-> http(s)://domain/v1/:app_id/crashes/:platform
+> http(s)://domain/v2/:app_id/crashes
 
 #### Http监控
 
-> http(s)://domain/v1/:app_id/http-stats/:platform
+> http(s)://domain/v2/:app_id/http-monitors
 
 #### 网络诊断
 
-> http(s)://domain/v1/:app_id/net-diags/:platform
+> http(s)://domain/v2/:app_id/net-diags
+
+#### Web性能
+
+> http(s)://domain/v2/:app_id/web-performances
 
 #### 服务配置
 
-> http(s)://domain/v1/:app_id/app-config/:platform
+> http(s)://domain/v2/:app_id/app-config
 
 #### 自定义上报
 
-> http(s)://domain/v1/:app_id/events
+> http(s)://domain/v2/:app_id/custom-events
+> http(s)://domain/v2/:app_id/custom-events.png
+
 
 ---
 
-## Crash API Spec
+## 基础事件
 
-### 获取崩溃日志上传 token 接口
-
-请求包：
+所有的数据都是按照基础事件的格式进行上报, http 请求中的User Agent 要使用系统的UA
 
 ```
-GET /v1/${app_id}/crash-report-token/${platform}?md5=${md5}
-```
+type BaseEvent struct {
+    // Event base
+    Time       int64 `json:"time"` 客户端时间
+    // App base
+    AppId       string `json:"app_id"`
+    AppBundleId string `json:"app_bundle_id"`
+    AppName     string `json:"app_name"`
+    AppVersion  string `json:"app_version"`
 
-`${platform}` 目前支持两个平台，其中 `i` 代表 `iOS`, `a` 代表 `android`
+    // server base， 如果有referer 就不需要写
+    Domain  string `json:"domain"`
+    Path    string `json:"path"`
 
-例：
+    // Device base，如果有完整UA 就不需要填写
+    DeviceModel  string `json:"device_model"`
+    Manufacturer string `json:"manufacturer"`
+    DeviceId     string `json:"device_id"`
 
-```
-GET /v1/f127c8d8f9ede0f464e80f5f4b46658/crash-report-token/i?md5=${af47219ebc749eab8127caedba}
-```
+    // OS base ，如果有完整UA 就不需要填写
+    OsPlatform string `json:"os_platform"`
+    OsVersion  string `json:"os_version"`
+    OsBuild    string `json:"os_build"`
 
-- 若获取崩溃报告成功，返回：
+    // SDK base
+    SdkVersion string `json:"sdk_version"`
+    SdkId      string `json:"sdk_id"`
 
-```
-200
-{
-	"message": "ok",
-	"token": ${UploadToken}  // string
-	"key": ${FileKey}
+    // Custom
+    Tag string `json:"tag"`
+
+    Type    string `json:"type"`
+    Name    string `json:"name"`
+    Content string `json:"content"` // 如果有数据不在上述列表中，需要json 序列化嵌入到此字段中
 }
 ```
 
-- 若获取失败，返回：
-
-```
-400
-{
-	"error_code": ${ErrorCode},  // long
-	"error_message": ${ErrorMessage} // string
-}
-```
-
-### 上报崩溃日志描述信息
-
-请求包:
-
-```
-POST v1/${app_id}/crashes/${platform}
-Content-Type: application/json
-Body:
-{
-	AppId        string `json:"app_id"`
-	AppBundleId  string `json:"app_bundle_id"`
-	AppName      string `json:"app_name"`
-	AppVersion   string `json:"app_version"`
-	DeviceModel  string `json:"device_model"`
-	OsPlatform   string `json:"os_platform"`
-	OsVersion    string `json:"os_version"`
-	OsBuild      string `json:"os_build"`
-	SdkVersion   string `json:"sdk_version"`
-	SdkId        string `json:"sdk_id"`
-	DeviceId     string `json:"device_id"`
-	ReportUUID   string `json:"report_uuid"`
-	CrashLogKey  string `json:"crash_log_key"`
-	Manufacturer string `json:"manufacturer"`
-	StartTime    string `json:"start_time"`
-	CrashTime    string `json:"crash_time"`
-}
-```
-
-`${platform}` 目前支持两个平台，其中 `i` 代表 `iOS`, `a` 代表 `android`
-
-例：
-
-```
-POST /v1/f127c8d8f9ede0f464e80f5f4b46658/crashes/i
-```
-
-返回包：
-
-- 若上传崩溃描述信息成功，返回：
-
-```
-200
-{
-	"message": "ok"
-}
-```
-
-- 若上传崩溃描述信息失败，返回：
-
-```
-400
-{
-	"error_code": ${ErrorCode},  // long
-	"error_message": ${ErrorMessage} // string
-}
-```
-
----
+每个事件是一个JSON，每个JSON 使用换行符隔开。
 
 ## HTTP Monitor API Spec
 
@@ -148,7 +95,7 @@ POST /v1/f127c8d8f9ede0f464e80f5f4b46658/crashes/i
 请求包:
 
 ```
-POST v1/${app_id}/http-stats/${platform}
+POST v2/:app_id/http-monitors
 Content-Type: application/x-gzip
 Content-Encoding: gzip
 Body: ${Content}
@@ -172,41 +119,40 @@ Body: ${Content}
 }
 ```
 
-* `<Content>`: 上报信息正文，格式：
+* `<Content>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
 
 ```
-${value0}\t${value1}\t${value2}\t${value3}\n
-${value0}\t${value1}\t${value2}\t${value3}\n
-...
+{"time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+{"time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid能","content":"序列化内容"}\n
 ```
-当字段值不存在时使用 `-` 填充相应字段进行上报
+
+content中数据格式
+```
+{
+"host_ip":"服务端IP",
+"network_error_msg":"错误信息",
+"status_code": httpcode,
+"method":"http method",
+"start_timestamp":请求开始时间戳毫秒,
+"data_length":请求长度,
+"query:{json 形式的请求参数},
+"response_time_stamp":响应时间戳毫秒,
+"url":"完整url",
+"path": "请求path",
+"dns_time": dns解析时间,
+"end_timestamp": 结束时间戳毫秒,
+"path1": "path 第一级",
+"path2": "path 第二级",
+"path3": "path 第三级",
+"path4": "path 第四级",
+"domain": "域名",
+"network_error_code: 网络错误代码,
+}
+```
+
 数据使用 gzip 进行压缩
 
 * 上报数据结构
-
-```
-{
-	AppId             string // app id
-	Platform          int64  // 上报的客户端类型，1: iOS, 2: Android
-	AppName           string // 宿主 App 的名字。
-	AppBundleId       string // 宿主 App 的唯一标识号(包名)
-	OsVersion         string // 系统版本号
-	DeviceModel       string // 设备型号
-	DeviceUUID        string // 设备唯一识别号
-	Domain            string // 请求的 Domain Name
-	Path              string // 请求的 Path
-	Method            string // 请求使用的 HTTP 方法，如 POST 等
-	HostIP            string // 实际发生请求的主机 IP 地址
-	StatusCode        int64  // 服务器返回的 HTTP 状态码
-	StartTimestamp    uint64 // 请求开始时间戳，单位是 Unix ms
-	ResponseTimeStamp uint64 // 服务器返回 Response 的时间戳，单位是 Unix ms
-	EndTimestamp      uint64 // 请求结束时间戳，单位是 Unix ms
-	DnsTime           uint64 // 请求的 DNS 解析时间, 单位是 ms
-	DataLength        uint64 // 请求返回的 data 的总长度，单位是 byte
-	NetworkErrorCode  int64  // 请求发生网络错误时的错误码
-	NetworkErrorMsg   string // 请求发生网络错误时的错误信息
-}
-```
 
 ### 行为约定
 
@@ -261,138 +207,42 @@ ${value0}\t${value1}\t${value2}\t${value3}\n
 
 ---
 
-## NetDiagnose API Spec
+## Web性能
 
-### 上报一条网络诊断数据
-
-请求包：
-
-```
-POST v1/${app_id}/net-diags/${platform}
-Content-Type: application/json
-{
-	AppId         string  `json:"app_id"`
-	AppBundleId   string  `json:"app_bundle_id"`
-	AppName       string  `json:"app_name"`
-	AppVersion    string  `json:"app_version"`
-	DeviceModel   string  `json:"device_model"`
-	OsPlatform    string  `json:"os_platform"`
-	OsVersion     string  `json:"os_version"`
-	SdkVersion    string  `json:"sdk_version"`
-	SdkId         string  `json:"sdk_id"`
-	DeviceId      string  `json:"device_id"`
-	ResultID      string  `json:"result_id"`
-	PingCode      int     `json:"ping_code"`
-	PingIp        string  `json:"ping_ip"`
-	PingSize      uint    `json:"ping_size"`
-	PingMaxRtt    float64 `json:"ping_max_rtt"`
-	PingMinRtt    float64 `json:"ping_min_rtt"`
-	PingAvgRtt    float64 `json:"ping_avg_rtt"`
-	PingLoss      int     `json:"ping_loss"`
-	PingCount     int     `json:"ping_count"`
-	PingTotalTime float64 `json:"ping_total_time"`
-	PingStddev    float64 `json:"ping_stddev"`
-	TcpCode       int     `json:"tcp_code"`
-	TcpIp         string  `json:"tcp_ip"`
-	TcpMaxTime    float64 `json:"tcp_max_time"`
-	TcpMinTime    float64 `json:"tcp_min_time"`
-	TcpAvgTime    float64 `json:"tcp_avg_time"`
-	TcpLoss       int     `json:"tcp_loss"`
-	TcpCount      int     `json:"tcp_count"`
-	TcpTotalTime  float64 `json:"tcp_total_time"`
-	TcpStddev     float64 `json:"tcp_stddev"`
-	TrCode        int     `json:"tr_code"`
-	TrIp          string  `json:"tr_ip"`
-	TrContent     string  `json:"tr_content"`
-	DnsRecords    string  `json:"dns_records"`
-	HttpCode      int     `json:"http_code"`
-	HttpIp        string  `json:"http_ip"`
-	HttpDuration  float64 `json:"http_duration"`
-	HttpBodySize  int     `json:"http_body_size"`
-}
-```
-
-返回包：
-
-- 如果请求成功，返回包含如下内容的 JSON 字符串（已格式化，便于阅读）：
+> http(s)://domain/v2/:app_id/web-performances
+现代浏览器有Web性能API函数可以获取到网页真实的性能数据，通过上报汇聚可以得到
+请求包按照基本事件形式，content 中 即 performance API  获取的 每一个entry，将content 序列化后填入基本事件中进行上报
 
 ```
-201 
-{}
-```
 
-- 如果请求失败，返回包含如下内容的JSON字符串（已格式化，便于阅读）：
-
-```
-{
-    "error_message":    ${Error} // string
-    "error_code":       ${ErrorCode}
-}
 ```
 
 ---
 
-## 日活统计 API Spec
+## 配置处理 API Spec
 
 ### 上报地址
-通过config 配置进行上传日活数据，使用json 进行上报
-`http(s)://domain/v1/:app_id/app-config/:platform`
+通过config 接口获取当前App配置，同时使用json 进行发送设备信息给服务器进行记录
+`http(s)://domain/v2/:app_id/app-config`
 
 ### 上报间隔
 config 一天内获取一次，启动时获取一次，异步获取更新，上次更新时间距离现在的时间不能超过24小时
 
 ### 上报内容
 
-```
-app_bundle_id     : String (app 包名，比如com.xxx.yyy)
-app_name          : String (app 名字 比如王者荣耀)
-app_version       : String 
-device_model      : String
-os_platform       : String
-os_version        : String
-sdk_version       : String
-sdk_id            : String （通过sdk生成的唯一id）
-device_id         : String  (设备唯一id，会有权限问题)
-```
-
-服务端需要根据客户端IP 分离出
-
-```
-country           : String
-province          : String
-city              : String
-isp               : String
-```
+基础事件
 
 ---
 
 ## 自定义事件 API Spec
 
-### 上报一条自定义事件
+### 上报自定义事件
+基础事件，然后将自定义的事件json 序列化为字符串之后放入到content 中
 
+另外为了方便客户端使用，也增加了GET方式的上报，内容是相同的
 ```
-POST v1/${app_id}/events
-Content-Type: application/json
-Body:
-{
-    AppBundleId  string `json:"app_bundle_id"`
-    AppName      string `json:"app_name"`
-    AppVersion   string `json:"app_version"`
-    DeviceModel  string `json:"device_model"`
-    OsPlatform   string `json:"os_platform"`
-    OsVersion    string `json:"os_version"`
-    OsBuild      string `json:"os_build"`
-    SdkVersion   string `json:"sdk_version"`
-    SdkId        string `json:"sdk_id"`
-    Tag          string `json:"tag"`
-    Manufacturer string `json:"manufacturer"`
-    Name         string `json:"name"`
-    Content      string `json:"content"`
-    Type         string `json:"type"`
-}
+GET v2/${app_id}/custom-events.png
 ```
-
-其中，`Content` 是自定义事件映射表序列化为字符串后的结果。
 
 返回包：
 
@@ -412,6 +262,7 @@ Body:
 }
 ```
 
+---
 
 
 

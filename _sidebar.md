@@ -15,7 +15,7 @@
   - [网络性能监控](features/httpmonitor.md)
   - [网络诊断](features/netdiag.md)
   - [卡顿监控](features/lag.md)
-  - [web 性能监控](features/webperformance.md)
+  - [Web 性能监控](features/webperformance.md)
   - [日志上报](features/logger.md)
   - [自定义上报](features/udf.md)
 - [**API Specs**](api/spec.md)
