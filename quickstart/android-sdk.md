@@ -1,7 +1,7 @@
 ## 简介
 
 ### Android SDK Theory
-七牛 DEM Android SDK 通过虚拟机技术在应用打包编译过程中对应用采样点（Http 标准协议和 Https 标准协议）进行嵌码操作，该操作会在协议库方法前后部署 SDK 探针，该过程不会影响用户代码逻辑；
+七牛 APM Android SDK 通过虚拟机技术在应用打包编译过程中对应用采样点（Http 标准协议和 Https 标准协议）进行嵌码操作，该操作会在协议库方法前后部署 SDK 探针，该过程不会影响用户代码逻辑；
 
 每当 App 启动时，七牛 Agent 开始工作，应用有网络请求时，通过之前部署的 SDK 探针以一定的采集频率来采集数据，并对采集的数据进行汇总后，上传到服务器（已报表的形式展现）
 应用退出到后台或用户关闭App时，七牛Agent 停止工作，以便减少不必要的流量和CPU消耗
@@ -79,7 +79,7 @@
 在 “MainActivity” 中的 onResume() 方法（如未找到该方法请新增）中初始化 Android APM SDK
 
 ```
-DEMManager.start("apm.domain.com", "appkey", this.getApplicationContext());
+APMManager.start("apm.domain.com", "appkey", this.getApplicationContext());
 ```
 
  ![image](../_media/android-start.png)
@@ -93,11 +93,11 @@ DEMManager.start("apm.domain.com", "appkey", this.getApplicationContext());
 
 ### 嵌码完整性校验
 - 数据收集服务器校验
-- 嵌码完成后可通过 “LogCat” 查看 SDK 日志输出结果，用以进行数据收集服务器校验，TAG 为 DEMManager， 标准日志输出结果如下所示
+- 嵌码完成后可通过 “LogCat” 查看 SDK 日志输出结果，用以进行数据收集服务器校验，TAG 为 APMManager， 标准日志输出结果如下所示
 
 ```
-08-28 09:40:26.370 6726-6726/qiniu.predem.example D/DEMManager: DemManager start
-08-28 09:40:26.674 6726-7109/qiniu.predem.example D/DEMManager: ---Http monitor true
-08-28 09:40:26.682 6726-7109/qiniu.predem.example D/DEMManager: ---Crash report true
-08-28 09:40:26.682 6726-7109/qiniu.predem.example D/DEMManager: ----Lag monitor true
+08-28 09:40:26.370 6726-6726/qiniu.predem.example D/APMManager: DemManager start
+08-28 09:40:26.674 6726-7109/qiniu.predem.example D/APMManager: ---Http monitor true
+08-28 09:40:26.682 6726-7109/qiniu.predem.example D/APMManager: ---Crash report true
+08-28 09:40:26.682 6726-7109/qiniu.predem.example D/APMManager: ----Lag monitor true
 ```

@@ -1,8 +1,8 @@
-在使用DEM之前，您必须做好以下准备工作：
+在使用七牛APM之前，您必须做好以下准备工作：
 
 * 拥有七牛云账号；
 * 到七牛云官网申请 Access Key 和 Secret Key；
-* 联系客服或销售人员开通 Pandora 大数据平台以及 DEM 相关服务；
+* 联系客服或销售人员开通 Pandora 大数据平台以及 APM 相关服务；
 
 具体操作请参考如下步骤：
 
@@ -22,5 +22,5 @@
 
 (6). 联系七牛云销售为您开通 Pandora 服务
 
-(7). 登录 [dem](https://predem.qiniu.com) 开始使用
+(7). 登录 [APM](https://apm.qiniu.com) 开始使用
 

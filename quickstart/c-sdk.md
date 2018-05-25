@@ -56,7 +56,7 @@ curl_global_init(CURL_GLOBAL_ALL);
     const char* c = cJSON_PrintUnformatted(obj);
 
     int res = predem_curl_send_event("testsend", c);
-    if (res != PREDEM_CURL_OK) {
+    if (res != PREAPM_CURL_OK) {
         printf("code %d\n", res);
         FAIL("send event failed");
     }
