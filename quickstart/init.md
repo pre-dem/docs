@@ -4,6 +4,4 @@
 ![](../_media/dem-portal-init-app.gif)
 
 
-App 创建成功之后，请到该 App 的 `APP设置` 页面，获取 `上报域名` 和 `App Key`，供相关 SDK 上报数据使用。如果您因某种原因需禁用 SDK 的某些模块，您可在 Portal 的 `APP设置` 页面更新这部分的设置，具体操作如下图。更新设置之后，App 的上报行为会在下次启动后相应更新。
-
-![](../_media/dem-app-setting.gif)
+App 创建成功之后，请到该 App 的 `应用信息` 页面，获取 `上报域名` 和 `App Key`，供相关 SDK 上报数据使用。
