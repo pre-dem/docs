@@ -20,7 +20,7 @@
   - [事务上报](features/udf.md)
 - [**API Specs**](api/spec.md)
 - [**设置**](settings/settings.md)
-  - [计算和存储资源管理](settings/resources.md)
+  - [用户管理](settings/users.md)
 - **更多**
   - [交流分享](links/sharing.md)
 - [**计费**](price/price.md)

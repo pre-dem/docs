@@ -13,9 +13,7 @@
 
 | 功能 | 版本 |
 | - | - |
-| crash 监控 | v1.0.0 |
 | HTTP 性能监控 | v1.0.0 |
-| UI 卡顿监控 | v1.0.0 |
 | 网络诊断 | v1.0.0 |
 | 自定义事件上报 | v1.0.0 |
 
@@ -98,6 +96,4 @@ APMManager.start("apm.domain.com", "appkey", this.getApplicationContext());
 ```
 08-28 09:40:26.370 6726-6726/qiniu.predem.example D/APMManager: DemManager start
 08-28 09:40:26.674 6726-7109/qiniu.predem.example D/APMManager: ---Http monitor true
-08-28 09:40:26.682 6726-7109/qiniu.predem.example D/APMManager: ---Crash report true
-08-28 09:40:26.682 6726-7109/qiniu.predem.example D/APMManager: ----Lag monitor true
 ```
