@@ -5,7 +5,5 @@
 
 日志上报流程如下：
 
-![](../_media/logger-flow.png)
 
-![](../_media/dem-portal-log.gif)
 

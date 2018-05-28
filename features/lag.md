@@ -5,4 +5,3 @@
 * 统计历史，聚合分析
 * 通过 workflow 自定义分析
 
-![](../_media/dem-portal-lag.gif)

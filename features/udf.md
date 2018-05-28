@@ -7,4 +7,4 @@
 
 Portal 数据查看方法如下：
 
-![](../_media/dem-portal-custom.gif)
+![](../_media/web_events.png)
