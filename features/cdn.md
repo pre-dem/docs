@@ -5,5 +5,17 @@
 
 #### 基础运维信息
 
+![image](../_media/cdn_visits.png)
+![image](../_media/cdn_trafic.png)
+![image](../_media/cdn_code.png)
+![image](../_media/cdn_trafic.png)
+![image](../_media/cdn_province1.png)
+![image](../_media/cdn_province2.png)
+![image](../_media/cdn_world.png)
+
+#### 运营信息
+
+![image](../_media/cdn_day_atcive_1.png)
+![image](../_media/cdn_day_active_2.png)
 
 更多的展示维度正在酝酿中，敬请期待。
