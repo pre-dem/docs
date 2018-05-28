@@ -7,6 +7,7 @@
 
 ### 使用
 
-您可在 APM Portal 上，查询源自 App 的网络上报数据
+您可在 APM Portal 上，查询源自 App，Web及小程序的网络上报数据
 
-![](../_media/dem-http-monitor.gif)
+![](../_media/http_monitor_1.png)
+![](../_media/http_monitor_2.png)

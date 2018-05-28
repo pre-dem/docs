@@ -15,7 +15,7 @@
 
 #### 运营信息
 
-![image](../_media/cdn_day_atcive_1.png)
+![image](../_media/cdn_day_active_1.png)
 ![image](../_media/cdn_day_active_2.png)
 
 更多的展示维度正在酝酿中，敬请期待。
