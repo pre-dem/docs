@@ -98,6 +98,7 @@ type BaseEvent struct {
 POST v2/:app_id/http-monitors
 Content-Type: application/x-gzip
 Content-Encoding: gzip
+Authorization：SHA2(url:sk)
 Body: ${Content}
 ```
 
@@ -241,7 +242,7 @@ config 一天内获取一次，启动时获取一次，异步获取更新，上�
 
 另外为了方便客户端使用，也增加了GET方式的上报，内容是相同的
 ```
-GET v2/${app_id}/custom-events.png
+GET v2/:app_id/custom-events.png
 ```
 
 返回包：
