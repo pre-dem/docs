@@ -4,6 +4,7 @@
 ![](../_media/stream_play.gif)
 
 #### 运营信息
-
+![](../_media/stream_push.png)
+![](../_media/stream_device.png)
 
 更多的展示维度正在酝酿中，敬请期待。
