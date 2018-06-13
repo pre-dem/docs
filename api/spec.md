@@ -17,6 +17,10 @@ app_key 分为两部分，app_id 和 sk, App_id 为 app_key 的前8位
 
 ### 基本功能
 
+#### 日志上报
+
+> http(s)://domain/v2/:app_id/log-capture
+
 #### 崩溃上报
 
 > http(s)://domain/v2/:app_id/crashes
@@ -88,6 +92,110 @@ type BaseEvent struct {
 
 每个事件是一个JSON，每个JSON 使用换行符隔开。
 
+## 日志上报
+
+### 上报监控数据
+
+请求包:
+
+```
+POST v2/:app_id/log-capture
+Content-Type: application/x-gzip
+Content-Encoding: gzip
+Authorization：SHA2(url:sk)
+Body: ${Content}
+```
+
+返回包:
+
+- 如果请求成功，返回包含如下内容的 JSON 字符串（已格式化，便于阅读）：
+
+```
+201
+{}
+```
+
+- 如果请求失败，返回包含如下内容的JSON字符串（已格式化，便于阅读）：
+
+```
+{
+    "error_message":    ${ErrorMessage} // string
+    "error_code":       ${ErrorCode} // string
+}
+```
+
+* `<Content>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
+
+```
+{"time":时间戳UTC时间,"type":"auto_captured","name":"log","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+{"time":时间戳UTC时间,"type":"auto_captured","name":"log","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+```
+
+content中数据格式
+```
+{
+"log_key":"日志内容",
+"start_time":"日志开始时间",
+"end_time": "日志结束时间",
+"log_tags":"日志标签",
+"error_count":"错误日志数目",
+}
+```
+
+数据使用 gzip 进行压缩
+
+## 崩溃上报
+
+### 上报监控数据
+
+请求包:
+
+```
+POST v2/:app_id/crashes
+Content-Type: application/x-gzip
+Content-Encoding: gzip
+Authorization：SHA2(url:sk)
+Body: ${Content}
+```
+
+返回包:
+
+- 如果请求成功，返回包含如下内容的 JSON 字符串（已格式化，便于阅读）：
+
+```
+201
+{}
+```
+
+- 如果请求失败，返回包含如下内容的JSON字符串（已格式化，便于阅读）：
+
+```
+{
+    "error_message":    ${ErrorMessage} // string
+    "error_code":       ${ErrorCode} // string
+}
+```
+
+* `<Content>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
+
+```
+{"time":时间戳UTC时间,"type":"auto_captured","name":"crash","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+{"time":时间戳UTC时间,"type":"auto_captured","name":"crash","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+```
+
+content中数据格式
+```
+{
+"report_uuid":"crash 报告的唯一识别号",
+"crash_log_key":"crash 内容",
+"start_time":"系统启动的时间",
+"crash_time":"崩溃发生的时间",
+
+}
+```
+
+数据使用 gzip 进行压缩
+
 ## HTTP Monitor API Spec
 
 ### 上报监控数据
@@ -124,7 +232,7 @@ Body: ${Content}
 
 ```
 {"time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
-{"time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid能","content":"序列化内容"}\n
+{"time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
 ```
 
 content中数据格式
@@ -213,10 +321,6 @@ content中数据格式
 > http(s)://domain/v2/:app_id/web-performances
 现代浏览器有Web性能API函数可以获取到网页真实的性能数据，通过上报汇聚可以得到
 请求包按照基本事件形式，content 中 即 performance API  获取的 每一个entry，将content 序列化后填入基本事件中进行上报
-
-```
-
-```
 
 ---
 
