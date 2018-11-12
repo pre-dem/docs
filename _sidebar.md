@@ -19,6 +19,7 @@
   - [事件上报](features/udf.md)
   - [事务上报](features/transaction.md)
 - [**API Specs**](api/spec.md)
+- [**日志搜索语法**](settings/search-syntax.md)
 - [**设置**](settings/settings.md)
   - [用户管理](settings/users.md)
 - **更多**
