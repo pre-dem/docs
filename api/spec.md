@@ -100,10 +100,10 @@ type BaseEvent struct {
 
 ```
 POST v2/:app_id/log-capture
-Content-Type: application/x-gzip
+Content-Type: application/json
 Content-Encoding: gzip
 Authorization：SHA2(url:sk)
-Body: ${Content}
+Body: ${body}
 ```
 
 返回包:
@@ -124,11 +124,11 @@ Body: ${Content}
 }
 ```
 
-* `<Content>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
+* `<body>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
 
 ```
-{"time":时间戳UTC时间,"type":"auto_captured","name":"log","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
-{"time":时间戳UTC时间,"type":"auto_captured","name":"log","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+{"content":"序列化内容","time":时间戳UTC时间,"type":"auto_captured","name":"log","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等"}\n
+{"content":"序列化内容","time":时间戳UTC时间,"type":"auto_captured","name":"log","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等"}\n
 ```
 
 content中数据格式
@@ -152,10 +152,10 @@ content中数据格式
 
 ```
 POST v2/:app_id/crashes
-Content-Type: application/x-gzip
+Content-Type: application/json
 Content-Encoding: gzip
 Authorization：SHA2(url:sk)
-Body: ${Content}
+Body: ${body}
 ```
 
 返回包:
@@ -176,11 +176,10 @@ Body: ${Content}
 }
 ```
 
-* `<Content>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
+* `<body>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
 
 ```
-{"time":时间戳UTC时间,"type":"auto_captured","name":"crash","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
-{"time":时间戳UTC时间,"type":"auto_captured","name":"crash","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+{"content":"序列化内容","time":时间戳UTC时间,"type":"auto_captured","name":"crash","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等"}
 ```
 
 content中数据格式
@@ -204,10 +203,9 @@ content中数据格式
 
 ```
 POST v2/:app_id/http-monitors
-Content-Type: application/x-gzip
-Content-Encoding: gzip
+Content-Type: application/json
 Authorization：SHA2(url:sk)
-Body: ${Content}
+Body: ${body}
 ```
 
 返回包:
@@ -228,11 +226,11 @@ Body: ${Content}
 }
 ```
 
-* `<Content>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
+* `<body>`: 上报信息正文，base event格式，content中为真实数据信息，需要序列化，格式：
 
 ```
-{"time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
-{"time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等","content":"序列化内容"}\n
+{"content":"序列化内容","time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等"}\n
+{"content":"序列化内容","time":时间戳UTC时间,"type":"auto_captured","name":"monitor","app_version":"版本号","sdk_version":"SDK版本号","sdk_id":"sdk唯一id","tag":"指定标示，比如uid等"}\n
 ```
 
 content中数据格式
